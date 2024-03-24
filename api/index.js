@@ -2,12 +2,14 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const User = require("./models/User.js");
 const app = express();
 
 app.use(cors({credentials:true,origin:'http://localhost:3000' }));
 app.use(express.json());
+app.use(cookieParser());
 
 const secret = "ejskEHSJDghja12ajejWJEJSq2eie";
 
@@ -52,7 +54,19 @@ app.post("/login", async (req, res) => {
   }
 });
 
-const PORT = 5000;
+app.get('/profile',(req, res)=>{
+  const {token} = req.cookies;
+  jwt.verify(token, secret,{},(err,info)=>{
+    if(err) throw err;
+    res.json(info);
+  });
+});
+
+app.post("/logout", (req, res) => {
+  res.cookie("token", "").json("ok");
+});
+
+const PORT = 4000;
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
