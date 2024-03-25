@@ -5,7 +5,10 @@ const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const User = require("./models/User.js");
+const multer = require("multer");
+const uploadMiddleware = multer({ dest: "uploads/" });
 const app = express();
+const fs = require("fs");
 
 app.use(cors({credentials:true,origin:'http://localhost:3000' }));
 app.use(express.json());
@@ -22,9 +25,8 @@ mongoose.connect("mongodb://localhost:27017/blog", {
   useUnifiedTopology: true,
 });
 
-//Z8A1JzEZViRfCv7Q
 
-//request from RegisterPage.js
+//request from RegisterPage.js and Request handling.
 app.post("/register", async (req, res) => {
   const { username, password } = req.body;
   const saltRounds = 10;
@@ -43,11 +45,15 @@ app.post("/register", async (req, res) => {
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
   const userDoc = await User.findOne({ username });
-  const passOk = await bcrypt.compare(password, userDoc.password);
+  const passOk = bcrypt.compareSync(password, userDoc.password);
   if (passOk) {
+    // logged in
     jwt.sign({ username, id: userDoc._id }, secret, {}, (err, token) => {
       if (err) throw err;
-      res.cookie("token", token).json("ok");
+      res.cookie("token", token).json({
+        id: userDoc._id,
+        username,
+      });
     });
   } else {
     res.status(400).json("wrong credentials");
@@ -64,6 +70,23 @@ app.get('/profile',(req, res)=>{
 
 app.post("/logout", (req, res) => {
   res.cookie("token", "").json("ok");
+});
+
+app.post("/post", uploadMiddleware.single('file'), async (req, res) => {
+  const {originalname, path} = req.files;
+  const parts = originalname.split('.');
+  const ext = parts[parts.length-1];
+  const newPath = path+'.'+ext;
+  fs.renameSync(path, newPath);
+
+  const {title, summary,content} = req.body;
+  const  postDoc = await Post.create({
+    title,
+    summary,
+    content,
+    cover:newPath,
+  })
+    res.json(postDoc);
 });
 
 const PORT = 4000;
