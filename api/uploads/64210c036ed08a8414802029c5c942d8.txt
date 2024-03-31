@@ -1,0 +1,21 @@
+Blog Application:
+- Developed RESTful APIs and backend services with Node.js and Express.js, integrating MongoDB for efficient data storage. 
+- Implemented secure authentication using bcryptjs and JSON Web Tokens (JWT).
+- Utilized middleware like cookie-parser for handling cookies and cors for enabling Cross-Origin Resource Sharing. Integrated Multer for seamless file uploads.
+- Designed responsive user interfaces with React.js and managed routes effectively using React Router.
+ContactBook Application:
+-Proficient in Java web development, adeptly utilizing servlets and JDBC for MySQL connectivity, while also demonstrating a strong grasp of object-oriented programming concepts.
+-Skilled in crafting modern and responsive user interfaces using Bootstrap, alongside implementing crucial functionalities such as user registration, login authentication, and session management to ensure seamless user experiences.
+-Experienced in maintaining data integrity and security through robust server-side validation, password hashing techniques, and HTTPS encryption, enhancing the overall security posture of web applications.
+-Expertise in backend development tools such as IDEs (Eclipse, IntelliJ IDEA), web servers (Apache Tomcat), and middleware (e.g., Apache DBCP), coupled with proficiency in version control systems like Git and GitHub for streamlined collaborative development and codebase maintenance.
+ --------------Front-end Developer | Rosette Smart Life      
+Accomplished Front-End Developer proficient in React.js, HTML5, and CSS3.
+Extensive experience in collaborating with cross-functional teams to translate UI/UX designs into functional components.
+Skilled in Redux for efficient state management and integrating RESTful APIs for seamless data interaction.
+Led migrations to modern frameworks, implementing performance optimization techniques and championing component-driven development methodologies.
+Agile practitioner with a passion for problem-solving, ensuring high-quality software solutions ali0gned with user needs and business objectives.
+----Full Stack Web Development Intern | Next24tech Technology & Services  
+Leveraged MongoDB, Node.js, and Express.js to craft a robust backend infrastructure, ensuring efficient data management and API functionality.
+Implemented a responsive and intuitive user interface using React.js, facilitating seamless user interaction and enhancing overall user experience.
+Acquired valuable hands-on experience in full-stack development, honing my abilities to tackle challenges across both frontend and backend components.
+Demonstrated growth in problem-solving and collaboration skills through active participation in team projects and engaging with colleagues to overcome technical hurdles effectively.
