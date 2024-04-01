@@ -101,10 +101,70 @@ app.post("/post", uploadMiddleware.single("file"), async (req, res) => {
   });
 });
 
+app.put("/post", uploadMiddleware.single("cover"), async (req, res) => {
+  try {
+    let newPath = null;
+    if (req.file) {
+      const { originalname, path } = req.file;
+      const parts = originalname.split(".");
+      const ext = parts[parts.length - 1];
+      newPath = path + "." + ext;
+      fs.renameSync(path, newPath);
+    }
+
+    const { token } = req.cookies;
+    jwt.verify(token, secret, {}, async (err, info) => {
+      if (err) {
+        return res.status(401).json({ error: "Invalid token" });
+      }
+      const { id, title, summary, content } = req.body;
+
+      try {
+        const updatedFields = { title, summary, content };
+        if (newPath) {
+          updatedFields.cover = newPath;
+        }
+
+        // Use findOneAndUpdate to update the post
+        const postDoc = await Post.findOneAndUpdate(
+          { _id: id }, // Filter criteria
+          updatedFields, // Updated fields
+          { new: true } // Options: Return the updated document
+        );
+
+        if (!postDoc) {
+          return res.status(404).json({ error: "Post not found" });
+        }
+
+        if (postDoc.author.toString() !== info.id) {
+          return res
+            .status(403)
+            .json({ error: "You are not the author of this post" });
+        }
+
+        res.json(postDoc);
+      } catch (error) {
+        console.error("Error updating post:", error);
+        res.status(500).json({ error: "Internal server error" });
+      }
+    });
+  } catch (error) {
+    console.error("Error updating post:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+
 app.get('/post',async (req,res) => {
    res.json(await Post.find().populate('author',['username']).sort({createdAt:-1}).limit(20)
    );
 });
+
+app.get('/post/:id',async (req,res)=>{
+  const {id} = req.params;
+  const postDoc = await Post.findById(id).populate('author',['username']);
+  res.json(postDoc);
+})
 
 const PORT = 4000;
 
