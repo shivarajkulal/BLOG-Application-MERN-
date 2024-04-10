@@ -1,70 +1,145 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# MERN Blog Application
 
-## Available Scripts
+![GitHub repo size](https://img.shields.io/github/repo-size/shivarajkulal/BLOG-Application-MERN-)
+![GitHub issues](https://img.shields.io/github/issues-raw/shivarajkulal/BLOG-Application-MERN-)
+![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/shivarajkulal/BLOG-Application-MERN-)
 
-In the project directory, you can run:
+This is a full-stack blog application built using the MERN stack (MongoDB, Express.js, React.js, Node.js). It allows users to create, manage, and interact with blog posts.
 
-### `npm start`
+## Folder Structure
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```
+BLOG-Application-MERN-
+│
+├── api
+│   ├── models
+│   │   ├── Post.js
+│   │   └── User.js
+│   ├── uploads
+│   ├── index.js
+│   ├── .gitignore
+│   ├── package-lock.json
+│   └── package.json
+│
+└── client
+    ├── public
+    │   └── index.html
+    ├── src
+    │   ├── App.css
+    │   ├── App.js
+    │   ├── index.css
+    │   ├── index.js
+    │   ├── pages
+    │   │   ├── UserContext.js
+    │   │   ├── RegisterPage.js
+    │   │   ├── PostPage.js
+    │   │   ├── Post.js
+    │   │   ├── Layout.js
+    │   │   ├── LoginPage.js
+    │   │   ├── IndexPage.js
+    │   │   ├── Header.js
+    │   │   ├── EditPost.js
+    │   │   ├── Editor.js
+    │   │   └── CreatePost.js
+    │   └── ...
+    └── ...
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Features
 
-### `npm test`
+- **User Authentication**:
+  - Register, login, and logout functionalities.
+  - Secure authentication using JSON Web Tokens (JWT).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Rich Text Editing**:
+  - Integrated React Quill editor for creating and editing formatted blog post content.
 
-### `npm run build`
+- **Post Management**:
+  - Create, edit, and delete blog posts with ease.
+  - Support for adding images, videos, and other media to posts.
+  - Categorize posts and add tags for easy navigation.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **User Profile**:
+  - View and update user profiles, including profile pictures, bios, and social media links.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Pagination and Filtering**:
+  - Paginate posts to display a limited number per page.
+  - Filter posts based on categories, tags, or date ranges.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Real-time Updates**:
+  - Notify users of new posts, comments, and other activities in real-time using WebSocket technology.
 
-### `npm run eject`
+## Technologies Used
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Client Side:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- React
+- React Router DOM
+- React Quill
+- Date-fns
+- Axios
+- Web Vitals
+- Testing Libraries:
+  - @testing-library/jest-dom
+  - @testing-library/react
+  - @testing-library/user-event
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Server Side (API):
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- bcrypt & bcryptjs
+- cookie-parser
+- cors
+- jsonwebtoken
+- Multer
+- Nodemon
 
-## Learn More
+## Installation
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/shivarajkulal/BLOG-Application-MERN-.git
+   ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+2. Install dependencies for both client and server:
+   ```bash
+   cd BLOG-Application-MERN-
+   cd api && npm install
+   cd ../client && npm install
+   ```
 
-### Code Splitting
+3. Configure environment variables:
+   - Create a `.env` file in the `api` directory.
+   - Add necessary environment variables (e.g., MongoDB connection string, JWT secret key).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+4. Run the development server:
+   - Start the API server:
+     ```bash
+     cd ../api && npm start
+     ```
+   - Start the React development server:
+     ```bash
+     cd ../client && npm start
+     ```
 
-### Analyzing the Bundle Size
+5. Open your browser and navigate to `http://localhost:3000` to view the application.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Contributing
 
-### Making a Progressive Web App
+Contributions are welcome! Please feel free to submit bug reports, feature requests, or pull requests.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## License
 
-### Advanced Configuration
+This project is licensed under the [MIT License](LICENSE).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
+This README file serves as a brief introduction to the MERN Blog Application, providing an overview of its features, technologies used, installation instructions, and guidelines for contributing. Feel free to expand upon it with more detailed information, usage examples, or any additional sections you find relevant.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Best Regards,
+shivarajkulalsn884@gmail.com
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
