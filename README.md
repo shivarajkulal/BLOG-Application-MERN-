@@ -45,6 +45,9 @@ BLOG-Application-MERN-
     │   └── ...
     └── ...
 ```
+## Flowchart
+
+![Flowchart](public/flowchart.png)
 
 ## Features
 
